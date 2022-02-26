@@ -1,0 +1,89 @@
+
+<body>
+
+<link rel="stylesheet" href="css/otp.css" type="text/css">
+<div class="container d-flex justify-content-center align-items-center">
+
+ <div class="card text-center">
+
+	<div class="card-header p-5">
+		<img src="img/mobile.png">
+		<h5 class="mb-2">OTP VERIFICATION</h5>
+		<div>
+			<small>code has been send to {{mob}}</small>
+           
+		</div>
+	</div>
+     {{#if otperr}}
+            <div class="text-danger">{{otperr}}</div>
+            {{/if}}
+			 <span class="error_form" id="mob_error_message"></span>
+    <form method="post" id="OtpSubmitForm" action="/otp-veryfy">
+
+	<div class="input-container d-flex flex-row justify-content-center mt-2">
+		<input id="form_mob"  type="text" name="otp" class="m-1 text-center form-control rounded " >
+
+	</div>
+
+ <div>
+ 	<small>
+ 		didn't get the otp
+		<a href="#" class="text-decoration-none">Resend</a>
+ 	</small>
+ </div>
+
+ <div class="mt-3 mb-5">
+ 	<button type="submit" class="btn btn-success px-4 verify-btn">verify</button>
+ </div>
+</form>
+ </div>
+
+</div>
+
+</body>
+
+
+
+<script>
+$("#mob_error_message").hide()
+
+var error_mobno=false;	
+$("#form_mob").focusout(function() {
+
+            check_mob();
+         });
+
+		 function check_mob() {
+         
+            var pattern = /([0-9]{6})|(\([0-9]{3}\)\s+[0-9]{3}\-[0-9]{4})/;
+            var mob= $("#form_mob").val();
+         
+            if (pattern.test(mob) && mob !== '') {
+               $("#mob_error_message").hide();
+               $("#form_mob").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#mob_error_message").html("Enter 6 Digits number");
+               $("#mob_error_message").show();
+               $("#form_mob").css("border-bottom","2px solid #F90A0A");
+               error_mobno = true;
+            }
+         }
+ $("#OtpSubmitForm").submit(function() {
+           
+            error_mobno=false;
+          
+
+
+             check_mob();
+            
+
+            if (error_mobno===false) {
+               
+               return true;
+            } else {
+               alert("Please Fill the form Correctly");
+               return false;
+            }
+ })
+</script>
+

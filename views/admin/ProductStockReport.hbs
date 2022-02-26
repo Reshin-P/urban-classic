@@ -1,0 +1,61 @@
+
+
+<body>
+   
+<div class="">
+    {{#if Stock}}
+    <table id="example" class="display nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>Product</th>
+                   <th>SubCategory</th>
+                <th>Stock</th>
+                <th>Sold Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+             
+            </tr>
+        </thead>
+         {{#each Stock }}
+        <tbody>
+        
+            <tr>
+                <td>{{this.productname}}</td>
+                  <td>{{this.subcategory}}</td>
+                <td>{{this.quantity}}</td>
+                <td>{{this.salesQuantity}}</td>
+                <td>{{this.price}}</td>
+                <td>{{this.totalSale}}</td>
+               
+            </tr>
+        </tbody>
+           
+                 {{/each}}
+    </table>
+    {{else}}
+<h1>fdfdfdfddf</h1>
+    {{/if}}
+    </div>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+    </body>
+
+    <script>
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>

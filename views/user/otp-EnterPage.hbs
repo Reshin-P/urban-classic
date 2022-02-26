@@ -1,0 +1,195 @@
+
+
+<section class="vh-100" style="background-color: #508bfc;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-2-strong" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+  
+              
+              {{#if NoUser}}
+        
+  <div class="alert alert-danger alert-dismissible d-flex align-items-center fade show">
+      <i class="bi-exclamation-octagon-fill"></i>
+       {{NoUser}}
+  
+  </div>
+              {{/if}}
+
+             
+          
+              
+     <form method="post" id="registration_form" action="/login-otpcheck/{{user._id}}"> 
+     {{#if otp}}
+     <div class="alert alert-danger alert-dismissible d-flex align-items-center fade show">
+      <i class="bi-exclamation-octagon-fill"></i>
+         {{otp}}
+  
+  </div>
+  {{/if}}
+   
+ <h5 class="error_form  text-danger" id="password_error_message"></h5>
+              <div class="form-outline mb-4">
+                <span class="error_form" id="otp_error_message"></span>
+
+                <input type="text" id="form_otp" placeholder="Enter OTP"  name="otp" class="form-control form-control-lg" />
+               
+    
+              </div> 
+              
+  
+          
+             
+              <button class="btn btn-danger btn-lg btn-block btn_verify" type="submit">Veryfy</button>
+           
+        <div class="font-weight-bold text-center mt-5">
+          Time Left 
+          <p class="text-danger" style="font-size: large;" id="demo"></p>
+              </form>
+                 
+              
+            </div>
+            <a href="/resend-otp"> <button class="btn btn-warning font-italic btn_resend"  style="display: none;">Resend OTP</button></a>
+  
+         
+  
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+<script>
+  
+$(".btn_resend").on("click", () => {
+    $.ajax({
+        url : "/u-otp/resendOtp" ,
+        type : "post" ,
+        dataType : "json" ,
+        success : function (res) {
+            if (res) {
+                countDownTimer()
+                $('.btn_resend').hide()
+                $('.btn_verify').show()
+            }
+            else {
+                alert("otp sending failed")
+            }
+        }
+    })
+})
+
+var seconds = 60;
+
+function countDownTimer(){
+    var countDownDate = new Date();
+    countDownDate.setSeconds( countDownDate.getSeconds() + seconds );
+
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // Display the result in the element with id="demo"
+        $("#demo").html(minutes + "m " + seconds + "s ");
+        
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            $("#demo").html("EXPIRED");
+            $('.btn_resend').show()
+                $('.btn_verify').hide()
+        }
+    }, 1000);
+}
+
+$( document ).ready(function() {
+    countDownTimer();
+});
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+   
+  <script type="text/javascript">
+  
+  
+  $("#otp_error_message").hide()
+  
+  
+  
+  
+  
+  
+  var error_otp=false;
+  
+
+  
+     
+           $("#form_otp").focusout(function() {
+              check_otp();
+           });
+           
+           
+  
+  
+       function check_otp() {
+            var pattern = /[0-9]{6}(\s*,*,\s*[0-9]{6})*/;
+            var otp= $("#form_otp").val();
+            if (pattern.test(otp) && otp !== ''&&otp.length==6) {
+               $("#otp_error_message").hide();
+               $("#form_otp").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#otp_error_message").html("Enter 6 Digit Number");
+               $("#otp_error_message").show();
+               $("#form_otp").css("border-bottom","2px solid #F90A0A");
+               error_otp = true;
+            }
+         }
+          
+  
+           $("#registration_form").submit(function() {
+            
+              error_otp = false;
+              
+              check_otp();
+              
+  
+              if (error_otp === false  ) {
+                
+                 return true;
+              } else {
+                 alert("Please Fill the form Correctly");
+                 return false;
+              }
+  
+  
+           });
+       
+  
+  
+  </script>

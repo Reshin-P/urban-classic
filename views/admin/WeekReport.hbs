@@ -1,0 +1,114 @@
+
+<body>
+    <section class="">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+         
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Week Sales Reports</h3>
+
+            <form method="post" action="/admin/WeekWiseReport"  class="px-md-2">
+
+              <div class="form-outline mb-4">
+                {{!-- <input type="num" id="form3Example1q" name="discount" class="form-control" />
+                <label class="form-label" for="form3Example1q">Offers In Percentage</label> --}}
+              </div>
+
+              <div class="row">
+                <div class="col-md-10 mb-4">
+               
+                  <div class="form-outline datepicker">
+                    <input
+                      type="week"
+                      name="week"
+                      class="form-control"
+                      id="exampleDatepicker1"
+                    />
+                    <label for="exampleDatepicker1" class="form-label">Select a Week</label>
+                  </div>
+
+                </div>
+                
+              </div>
+
+              
+
+              
+              <button type="submit" class="btn btn-success btn-lg mb-1">View Report</button>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</section>
+{{#if WeeklyReport}}
+<div class="container" style="align-items: center;">
+
+<h1  style="color: brown;">Sales Report</h1>
+ <table id="example" style="text-align: center;" class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Product</th>
+      <th scope="col">Sold Out</th>
+      <th scope="col">Price</th>
+      <th scope="col">Total Sale</th>
+      
+    </tr>
+  </thead>
+  {{#each WeeklyReport}}
+  <tbody>
+    
+    <tr>
+
+      <th scope="row">{{this.productname}}</th>
+      <td>{{this.quantity}}</td>
+      <td>{{this.price}}</td>
+      <td style="color: green;" >{{this.totalSale}}</td>
+        
+          
+    </tr>
+    
+    
+  </tbody>
+  {{/each}}
+</table>
+</div>
+{{else}}
+
+{{/if}}
+<!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+</body>
+  {{#if NODATA}}
+<div class="container" style="align-items:center ;"> 
+
+<img style="margin-left: 14rem;" src="/images/nodata.png" width="500rem" height="500rem">
+</div>
+{{/if}}
+
+
+   <script>
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>

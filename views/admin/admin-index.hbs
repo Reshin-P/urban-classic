@@ -1,0 +1,514 @@
+
+<body>
+
+      <!-- Main Content -->
+
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Search -->
+
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-search fa-fw"></i>
+              </a>
+              <!-- Dropdown - Messages -->
+
+            </li>
+
+
+
+
+            <!-- Dropdown - Messages -->
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+              aria-labelledby="messagesDropdown">
+              <h6 class="dropdown-header">
+                Message Center
+              </h6>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                  <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                  <div class="status-indicator bg-success"></div>
+                </div>
+                <div class="font-weight-bold">
+                  <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                    problem I've been having.</div>
+                  <div class="small text-gray-500">Emily Fowler · 58m</div>
+                </div>
+              </a>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                  <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                  <div class="status-indicator"></div>
+                </div>
+                <div>
+                  <div class="text-truncate">I have the photos that you ordered last month, how
+                    would you like them sent to you?</div>
+                  <div class="small text-gray-500">Jae Chun · 1d</div>
+                </div>
+              </a>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                  <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                  <div class="status-indicator bg-warning"></div>
+                </div>
+                <div>
+                  <div class="text-truncate">Last month's report looks great, I am very happy with
+                    the progress so far, keep up the good work!</div>
+                  <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                </div>
+              </a>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <div class="dropdown-list-image mr-3">
+                  <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
+                  <div class="status-indicator bg-success"></div>
+                </div>
+                <div>
+                  <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                    told me that people say this to all dogs, even if they aren't good...</div>
+                  <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                </div>
+              </a>
+              <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+            </div>
+            </li>
+
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="row">
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+              <div class="card">
+                <div class="card-body p-3">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="numbers">
+                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Sale Amount</p>
+                        <h5 class="font-weight-bolder mb-0">
+
+                          <span class="text-success text-sm font-weight-bolder">{{Totalamount}}</span>
+                        </h5>
+                      </div>
+                    </div>
+                    <div class="col-4 text-end">
+                      <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                        <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+              <div class="card">
+                <div class="card-body p-3">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="numbers">
+                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Users</p>
+                        <h5 class="font-weight-bolder mb-0">
+
+                          <span class="text-success text-sm font-weight-bolder"> {{usercount}}</span>
+                        </h5>
+                      </div>
+                    </div>
+                    <div class="col-4 text-end">
+                      <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                        <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+              <div class="card">
+                <div class="card-body p-3">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="numbers">
+                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Profit</p>
+                        <h5 class="font-weight-bolder mb-0">
+
+                          <span class="text-danger text-sm font-weight-bolder">{{Profit}}</span>
+                        </h5>
+                      </div>
+                    </div>
+                    <div class="col-4 text-end">
+                      <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                        <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+              <div class="card">
+                <div class="card-body p-3">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="numbers">
+                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Deliverd Shipments</p>
+                        <h5 class="font-weight-bolder mb-0">
+
+                          <span class="text-success text-sm font-weight-bolder">{{deliverdCount}}</span>
+                        </h5>
+                      </div>
+                    </div>
+
+                    <div class="col-4 text-end">
+                      <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                        <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+      
+
+          <!-- Content Row -->
+          <div class="row">
+
+            <div class="col-xl-8 col-lg-7">
+
+              <!-- Area Chart -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Monthly Product Sales Quantity Wise</h6>
+
+                </div>
+                <div class="card-body">
+                  <div class="chart-area" style="width: 900px; height: 250;">
+
+                    <div id="columnchart_values" style="width: 1500px; height: 100px;"></div>
+                  </div>
+                  
+                </div>
+              </div>
+
+              <!-- Bar Chart -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Recent Users</h6>
+                </div>
+                <div class="card-body">
+                  <div class="chart-bar">
+ <table class="table table-bordered" style="text-align: center;">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+       <th scope="col">Email</th>
+      <th scope="col">Mobile</th>
+     
+     
+    </tr>
+  </thead>
+  <tbody>
+    {{#each Userlist}}
+    <tr>
+      
+      <td>{{this.firstname}}</td>
+      <td>{{this.email}}</td>
+      <td>{{this.mobno}}</td>
+    </tr>
+    {{/each}}
+    
+    
+  </tbody>
+</table>
+                  </div>
+                  
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Donut Chart -->
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Payment Method</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-pie pt-4">
+                    <div id="donutchart" style="width: 500px; height: 250px;"></div>
+                    
+                  </div>
+                  
+                </div>
+              </div>
+               <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Category Sales</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-pie pt-4">
+                    <div id="piechart_3d" style="width: 500px; height: 250px;"></div>
+                    
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+           
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+   <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+  </body>
+
+  
+
+
+
+
+
+</html>
+
+<script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+      
+        $.ajax({
+          url:'/admin/subCategoryChart',
+          method:'get',
+          success:(response)=>{
+          var data = google.visualization.arrayToDataTable(
+         
+      
+          response
+         
+        );
+
+        var options = {
+          title: 'My Daily Activities',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+          }
+        })
+       
+      }
+    </script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+  
+  google.charts.load("current", { packages: ['corechart'] });
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+   
+ console.log("dfdfd")
+    $.ajax({
+      url:'/admin/MonthlyReportGraph',
+      method:'get',
+      success:(response)=>{
+        console.log(response)
+                console.log(response.report)
+
+        
+ var data = google.visualization.arrayToDataTable([
+      ["JAN", "Density", { role: "style" }],
+       ["JAN", response.report[0], "#b87333"],
+      ["FEB", response.report[1], "#b87333"],
+      ["MAR", response.report[2], "silver"],
+      ["APRL", response.report[3], "gold"],
+      ["MAY", response.report[4], "color: #e5e4e2"],
+      ["JUNE", response.report[5], "color: #e5e4e2"],
+      ["JULY", response.report[6], "color: #e5e4e2"],
+      ["AUG", response.report[7], "color: #e5e4e2"],
+      ["SEPT", response.report[8], "color: #e5e4e2"],
+      ["OCT", response.report[9], "color: #e5e4e2"],
+      ["NOV", response.report[10], "color: #e5e4e2"],
+      ["DEC", response.report[11], "color: #e5e4e2"],
+
+
+
+
+
+    ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+      {
+        calc: "stringify",
+        sourceColumn: 1,
+        type: "string",
+        role: "annotation"
+      },
+    ]);
+
+    var options = {
+      title: "Density of Precious Metals, in g/cm^3",
+      width: 900,
+      height: 400,
+      bar: { groupWidth: "15%" },
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+      }
+    })
+
+   
+   
+  }
+</script>
+
+ <script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      $.ajax({
+        url: '/admin/PaymentGraph',
+        method: 'get',
+        success: (response) => {
+
+
+          var data = google.visualization.arrayToDataTable([
+         ['Element', 'Density', { role: 'style' }],
+         [response[0]._id, response[0].count, '#b87333'],            // RGB value
+         [response[1]._id, response[1].count, 'silver'],            // English color name
+         [response[2]._id, response[2].count, 'gold'],
+
+      
+      ]);
+          var options = {
+            title: 'My Daily Activities',
+            pieHole: 0.4,
+          };
+          var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+          chart.draw(data, options);
+
+        }
+      })
+
+
+
+
+
+    }
+  </script>

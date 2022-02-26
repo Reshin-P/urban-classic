@@ -1,0 +1,207 @@
+
+<section class="vh-100" style="background-color: #fffafa;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-9">
+
+   
+
+        <div class="card" style="border-radius: 15px;">
+          <div class="card-body">
+              <form action="/admin/update-banner/{{banner._id}}" id="banner_form" enctype="multipart/form-data" method="post">
+            <div class="row align-items-center pt-4 pb-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Heading</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <input type="text" id="form_heading1" value="{{banner.heading}}" style="width: 30rem;" name="heading" class="form-control form-control-lg" >
+                  <h5 class="error_form text-danger" id="heading1_error_message"></h5>
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Main Heading</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <input type="text" id="form_mainheading" height="20rem" name="mainheading" value="{{banner.mainheading}}" class="form-control form-control-lg"  />
+                  <h5 class="error_form text-danger" id="heading1_error_message"></h5>
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+
+            <div class="row align-items-center py-3">
+              <div class="col-md-3 ps-5">
+
+                <h6 class="mb-0">Description</h6>
+
+              </div>
+              <div class="col-md-9 pe-5">
+
+                <input type="text" id="form_description"  value="{{banner.description}}" name="description" style="height: 7rem;" class="form-control form-control-lg" />
+                      <label class="form-label" for="form3Examplev4">Description</label>
+                           <h5 class="error_form text-danger" id="description_error_message"></h5>
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+
+            <div class="row align-items-center py-3">
+             
+              <div class="col-md-9 pe-5">
+
+                <input class="form-control form-control-lg" name="image1" id="photo"  type="file" />
+
+              </div>
+               <div class="col-md-3 ps-5">
+
+           <img width="100rem" src="/images/BannerImages/{{banner._id}}image1.jpg" height="70rem">
+
+              </div>
+              
+            
+              <div class="col-md-9 pe-5">
+
+                <input class="form-control form-control-lg" name="image2" id="photo"   type="file" />
+
+              </div>
+                <div class="col-md-3 ps-5">
+
+              <img width="100rem" src="/images/BannerImages/{{banner._id}}image2.jpg" height="70rem">
+
+              </div>
+            </div>
+
+            <hr class="mx-n3">
+
+            <div class="px-5 py-4">
+              <button type="submit" class="btn btn-primary btn-lg">Update Banner</button>
+            </div>
+
+          </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+   <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+</section>
+
+
+<script type="text/javascript">
+$("#heading1_error_message").hide()
+$("#description_error_message").hide()
+$("#mainheading_error_message").hide()
+
+
+
+
+var error_heading1=false;
+var error_mainheading=false;
+var error_description=false;
+
+
+   $("#form_heading1").focusout(function(){
+            check_heading1();
+         });
+       
+         $("#form_description").focusout(function() {
+            check_description();
+         });
+         $("#form_mainheading").focusout(function() {
+             check_mainheading();
+         });
+        
+
+         function check_heading1() {
+            
+            var heading = $("#form_heading1").val();
+            if (heading !== '') {
+               $("#heading1_error_message").hide();
+               $("#form_heading1").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#heading1_error_message").html("Enter the Heading");
+               $("#heading1_error_message").show();
+               $("#form_heading1").css("border-bottom","2px solid #F90A0A");
+               error_productname = true;
+            }
+         }
+
+         function check_description() {
+            
+            var description = $("#form_description").val()
+            if ( description !== '') {
+               $("#description_error_message").hide();
+               $("#form_description").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#description_error_message").html("Enter the Description");
+               $("#description_error_message").show();
+               $("#form_description").css("border-bottom","2px solid #F90A0A");
+               error_brand = true;
+            }
+         }
+           function check_mainheading() {
+          
+            var mainheading = $("#form_mainheading").val()
+            if ( mainheading !== '') {
+               $("#mainheading_error_message").hide();
+               $("#form_mainheading").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#mainheading_error_message").html("Enter the Main Heading");
+               $("#mainheading_error_message").show();
+               $("#form_mainheading").css("border-bottom","2px solid #F90A0A");
+               error_description = true;
+            }
+         }
+     
+       
+         $("#photo").rules("add", {
+        accept: "jpg|jpeg|png|ico|bmp"
+    });
+         $("#banner_form").submit(function() {
+    
+             error_heading1=false;
+            error_mainheading=false;
+             error_description=false;
+             check_heading1();
+                 check_description();
+                   check_mainheading();
+
+           
+            if (error_heading1=== false && error_mainheading === false && error_description === false ) {
+               
+               return true;
+            } else {
+               alert("Please Fill the form Correctly");
+               return false;
+            }
+
+
+         });
+    
+
+
+</script>

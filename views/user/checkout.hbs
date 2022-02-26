@@ -1,0 +1,550 @@
+<section class="checkout spad">
+    
+    <div class="container">
+        <div class="checkout__form">
+
+            <div id="addressform">
+                <form method="post" id="placeOrder">
+
+                    <div class="row">
+
+                        <div class="col-lg-8 col-md-6">
+
+
+
+
+                            <div class="">
+                                {{#if NoAddress}}
+                                <p style="color: red;">NO ADDRESS FOUND</p>
+                                <P style="color: red;">Add New Address</P>
+
+                                {{else}}
+                                {{#each address}}
+
+                                <div style="display: flex; margin-top: 1rem;">
+                                    <div style="margin-top: 6rem; ">
+                                        <input type="radio" value="{{this._id}}" id="form_address" name="addressid"
+                                            checked>
+
+                                    </div>
+
+                                    <div
+                                        style="border: rgb(235, 232, 232) solid  ; background-color: #f3f2ee; height: auto; width: 40rem; margin-left: 1rem">
+
+
+                                        <p style="padding-left: 1rem;">{{this.name}}</p>
+                                        <p style="padding-left: 1rem;">{{this.ALTmobno}}</p>
+                                        <p style="padding-left: 1rem;">{{this.address}}</p>
+
+
+                                        <p style="padding-left: 1rem;">{{this.pincode}}</p>
+
+                                    </div>
+
+
+                                </div>
+
+                                {{/each}}
+                                {{/if}}
+
+                                {{!-- <input type="text" placeholder="Apartment, suite, unite ect (optinal)"> --}}
+                            </div>
+
+
+                        </div>
+
+
+                        <input type="text" name="user" value="{{user._id}}" hidden>
+
+
+
+                        <div class="col-lg-4 col-md-6">
+                            <div class="checkout__order">
+                                <h4 class="order__title">Your order</h4>
+
+                                <ul class="checkout__total__all">
+
+                                    <li> <input type="checkbox" id="Wallet" onclick="checkwallet()" name="wallet">Wallet
+                                        <span id="userWallet">{{user.wallet}}</span>
+                                    </li>
+                                </ul>
+                                {{!-- <div class="checkout__order__products">Product<span>Total</span></div>
+                                <ul class="checkout__total__products">
+                                    {{#each CheckoutProd}}
+                                    <li>{{this.product.productname}} &nbsp* {{this.quantity}} <span>₹
+                                            {{this.product.price}}</span></li>
+                                    {{/each}}
+                                </ul>--}}
+
+                                <table style="width: 35rem; ">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+
+                                    </tr>
+                                    {{#each CheckoutProd}}
+                                    <tr style="margin-top: 2px;">
+                                        <td>{{this.product.productname}}</td>
+                                        <td style="text-align: center;">{{this.quantity}}</td>
+                                        <td>{{this.product.price}}</td>
+
+                                    </tr>
+                                    {{/each}}
+
+                                </table>
+                                <ul class="checkout__total__all">
+
+                                    <li>Total <span id="total">{{total}}</span></li>
+                                </ul>
+
+                                <hr>
+                                <div style="display: flex; flex-direction: column;">
+                                    <label class="container">COD
+                                        <input type="radio" checked="checked" value="COD" name="payementmethod">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container">Razorpay
+                                        <input type="radio" value="razorpay" name="payementmethod">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container">Paypal
+                                        <input type="radio" value="paypal" name="payementmethod">
+                                        <span class="checkmark"></span>
+                                    </label>
+
+
+                                </div>
+                                {{#if NoAddress}}
+                                <script>
+                                    window.onload = function noaddress() {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Oops...',
+                                            text: 'No Address Add New Adddress!',
+
+                                        })
+                                    }
+                                </script>
+                                {{else}}
+                                <button type="submit" class="site-btn">PLACE ORDER</button>
+                                {{/if}}
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <button class="vtn btn-info my-2" onclick="showDiv()">Add New Address</button>
+        <div id="welcomeDiv" style="display:none;">
+            <form method="post" id="Add_Address_form" action="/add-address">
+
+                <div class="row">
+
+                    <div class="col-lg-8 col-md-6">
+                        {{!-- <h6 class="coupon__code"><span class="icon_tag_alt"></span> Have a coupon? <a
+                                href="#">Click
+                                here</a> to enter your code</h6> --}}
+                        <h6 class="checkout__title">Billing Details</h6>
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <div class="checkout__input">
+                                    <span class="error_form" id="name_error_message"></span>
+                                    <p> Name<span>*</span></p>
+                                    <input type="text" id="form_name" name="name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <span class="error_form" id="mob_error_message"></span>
+                                    <p>Mob No<span>*</span></p>
+                                    <input type="text" id="form_mobno" name="ALTmobno">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- <div class="checkout__input">
+                            <p>Country<span>*</span></p>
+                            <input type="text">
+                        </div> --}}
+                        <div class="checkout__input">
+                            <span class="error_form" id="address_error_message"></span>
+                            <p>Address<span>*</span></p>
+                            <input type="text" name="address" id="address" placeholder="Full Address"
+                                class="checkout__input__add">
+                            {{!-- <input type="text" placeholder="Apartment, suite, unite ect (optinal)"> --}}
+                        </div>
+                        {{!-- <div class="checkout__input">
+                            <p>Town/City<span>*</span></p>
+                            <input type="text">
+                        </div> --}}
+                        <div class="checkout__input">
+                            <p>State<span>*</span></p>
+                            <span class="error_form" id="state_error_message"></span>
+                            <input name="state" id="form_state" type="text">
+                        </div>
+                        <div class="checkout__input">
+                            <p>Postcode / ZIP<span>*</span></p>
+                            <span class="error_form" id="pincode_error_message"></span>
+                            <input type="text" id="form_pincode" name="pincode">
+                        </div>
+                        <button type="submit" class="btn btn-dark">Add Address </button>
+
+
+            </form>
+        </div>
+
+</section>
+
+<script type="text/javascript">
+    $("#name_error_message").hide()
+
+    $("#mobno_error_message").hide()
+    $("#address_error_message").hide()
+    $("#state_error_message").hide()
+    $("#pincode_error_message").hide()
+
+
+    var error_name = false;
+
+    var error_mobno = false;
+    var error_address = false;
+    var error_state = false;
+    var error_pincode = false;
+
+    $("#form_name").focusout(function () {
+
+        check_name();
+    });
+    $("#form_mobno").focusout(function () {
+      
+        check_mob();
+    });
+    $("#address").focusout(function () {
+       
+        check_address();
+    });
+    $("#form_state").focusout(function () {
+        check_state();
+    });
+    $("#form_pincode").focusout(function () {
+        check_pincode();
+    });
+
+
+    function check_name() {
+        var pattern = /^[a-zA-Z" "]*$/;
+        var fname = $("#form_name").val();
+        if (pattern.test(fname) && fname !== '') {
+            $("#name_error_message").hide();
+            $("#form_name").css("border-bottom", "2px solid #34F458");
+        } else {
+            $("#name_error_message").html("Should contain only Characters");
+            $("#name_error_message").show();
+            $("#form_name").css("border-bottom", "2px solid #F90A0A");
+            error_name = true;
+                        
+
+        }
+    }
+
+    function check_mob() {
+        var pattern = /([0-9]{10})|(\([0-9]{3}\)\s+[0-9]{3}\-[0-9]{4})/;
+        var mob = $("#form_mobno").val();
+        if (pattern.test(mob) && mob !== '' && mob.length == 10) {
+            $("#mob_error_message").hide();
+            $("#form_mobno").css("border-bottom", "2px solid #34F458");
+        } else {
+            $("#mob_error_message").html("Invalid Mobile NO");
+            $("#mob_error_message").show();
+            $("#form_mobno").css("border-bottom", "2px solid #F90A0A");
+            error_mobno = true;
+         
+        }
+    }
+
+
+
+    function check_address() {
+        var pattern = /^[a-zA-Z" "]*$/;
+        var fname = $("#address").val();
+        if (pattern.test(fname) && fname !== '') {
+            $("#address_error_message").hide();
+            $("#address").css("border-bottom", "2px solid #34F458");
+        } else {
+            $("#address_error_message").html("Should contain only Characters");
+            $("#address_error_message").show();
+            $("#address").css("border-bottom", "2px solid #F90A0A");
+           
+            error_address = true;
+        }
+    }
+    function check_state() {
+        var pattern = /^[a-zA-Z]*$/;
+        var fname = $("#form_state").val();
+        if (pattern.test(fname) && fname !== '') {
+            $("#state_error_message").hide();
+            $("#form_state").css("border-bottom", "2px solid #34F458");
+        } else {
+            $("#state_error_message").html("Should contain only Characters");
+            $("#state_error_message").show();
+            $("#form_state").css("border-bottom", "2px solid #F90A0A");
+             ;
+        }
+    }
+
+    function check_pincode() {
+        var pattern = /([0-9]{6})|(\([0-9]{3}\)\s+[0-9]{3}\-[0-9]{4})/;
+        var mob = $("#form_pincode").val();
+
+        if (pattern.test(mob) && mob !== '' && mob.length == 6) {
+            $("#pincode_error_message").hide();
+            $("#form_pincode").css("border-bottom", "2px solid #34F458");
+        } else {
+            $("#pincode_error_message").html("Invalid Pin Code");
+            $("#pincode_error_message").show();
+            $("#form_pincode").css("border-bottom", "2px solid #F90A0A");
+            error_pincode = true;
+        
+        }
+    }
+
+
+    $("#Add_Address_form").submit(function () {
+        
+         error_name = false;
+
+         error_mobno = false;
+         error_address = false;
+         error_state = false;
+         error_pincode = false;
+
+        check_name();
+        check_mob();
+        check_address();
+        check_state();
+        check_pincode();
+
+
+
+        if (error_name === false && error_mobno === false && error_address === false && error_state === false && error_pincode === false) {
+
+            return true;
+        } else {
+
+Swal.fire('Fill The Form Properly')
+return false;
+         }
+
+
+    });
+
+
+
+</script>
+<script>
+    function checkwallet() {
+        var checkbox = document.getElementById('Wallet')
+        var total = document.getElementById("total").innerHTML
+        var walletamount = document.getElementById('userWallet').innerHTML
+        total = parseInt(total)
+        walletamount = parseInt(walletamount)
+        if (checkbox.checked) {
+
+
+
+            document.getElementById('total').innerHTML = total - walletamount
+        }
+        else if (!checkbox.checked) {
+            document.getElementById('total').innerHTML = total + walletamount
+        }
+
+
+    }
+</script>
+
+
+<script>
+
+    function showDiv() {
+        document.getElementById('welcomeDiv').style.display = "block";
+    }
+
+</script>
+<script>
+    $("#placeOrder").submit((e) => {
+        e.preventDefault()
+
+
+        var address = $("#form_address").val();
+
+        if (address) {
+            $.ajax({
+                url: '/cart/placeorder',
+                method: 'post',
+                data: $('#placeOrder').serialize(),
+                success: (response) => {
+
+                    if (response.CODpayment) {
+                        location.href = '/cart/order-placed'
+                    }
+                    else if (response.paypal) {
+
+                        location.href = '/paypal'
+
+                    }
+                    else {
+                        razorpayPayment(response)
+                    }
+                }
+            })
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No Address Add New Adddress!',
+
+            })
+        }
+
+
+    })
+
+
+    function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_kFVZIwEvYnvDN0", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "WARDROBE",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+
+                verifypayment(response, order)
+            },
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "9999999999"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+
+    }
+
+
+
+    function verifypayment(payment, order) {
+
+        $.ajax({
+
+            url: '/veryfy-payment',
+            data: {
+                payment,
+                order
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.status) {
+                    location.href = '/cart/order-placed'
+                }
+                else {
+                }
+            }
+        })
+    }  
+</script>
+
+{{!--
+===================================================================VALIDATION===========================================================
+--}}
+
+<script>
+    $.('#form').submit((e) => {
+        e.preventDefault()
+        alert("ghg")
+    })
+</script>
+
+
+{{!--
+<style>
+    /* The container */
+    .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Hide the browser's default radio button */
+    .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    /* Create a custom radio button */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #eee;
+        border-radius: 50%;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .container:hover input~.checkmark {
+        background-color: #ccc;
+    }
+
+    /* When the radio button is checked, add a blue background */
+    .container input:checked~.checkmark {
+        background-color: #e53637;
+    }
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the indicator (dot/circle) when checked */
+    .container input:checked~.checkmark:after {
+        display: block;
+    }
+
+    /* Style the indicator (dot/circle) */
+    .container .checkmark:after {
+        top: 9px;
+        left: 9px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: white;
+    }
+</style> --}}

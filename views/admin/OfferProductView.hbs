@@ -1,0 +1,75 @@
+<body>
+    <div class="container">
+{{#if ProductOffer}}
+
+ <table style="text-align: center;" class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">ProductName</th>
+     
+      <th scope="col">Validity</th>
+      <th scope="col">Discount</th>
+       <th scope="col"></th>
+    </tr>
+  </thead>
+  {{#each ProductOffer}}
+  <tbody>
+    
+    <tr>
+<td><img style="width: 2rem; height: 3rem;" src="/images/productImages/{{this.ProdId}}image1.jpg"> </td>
+  <td>{{this.productname}}</td>
+   <td>{{this.validity}}</td>
+   
+      
+     
+      <td style="color: green;" >{{this.discount}}%</td>
+        <td>
+          <button class="btn btn-danger" onclick="RemoveProductOffer('{{this._id}}','{{this.ProdId}}')" >Delete</button> </td>
+          
+    </tr>
+    
+    
+  </tbody>
+  {{/each}}
+</table>
+{{else}}
+<h1>no offers</h1>
+{{/if}}
+</div>
+<!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+</body>
+
+<script>
+function RemoveProductOffer(OfferID,ProdID){
+  $.ajax({
+    url:'/offer/RemoveProductOffer',
+    method:'post',
+    data:{
+      OfferID:OfferID,
+      ProdID:ProdID
+    },
+    success:(Response)=>{
+      alert("sucess")
+      location.reload()
+    }
+
+  })
+}
+</script>
+
+
+
+
+
+

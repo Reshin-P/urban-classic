@@ -1,0 +1,123 @@
+
+<body>
+    <section class="">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+         
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Sales Reports</h3>
+
+            <form method="post" action="/admin/mothlywiseReport"  class="px-md-2">
+
+              <div class="form-outline mb-4">
+                {{!-- <input type="num" id="form3Example1q" name="discount" class="form-control" />
+                <label class="form-label" for="form3Example1q">Offers In Percentage</label> --}}
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4">
+               
+                  <div class="form-outline datepicker">
+                    <input
+                      type="month"
+                      name="start"
+                      class="form-control"
+                      id="exampleDatepicker1"
+                    />
+                    <label for="exampleDatepicker1" class="form-label">Select a date</label>
+                  </div>
+
+                </div>
+                {{!-- <div class="col-md-6 mb-4">
+
+                  <input
+                      type="month"
+                      name="end"
+                      class="form-control"
+                      id="exampleDatepicker1"
+                    />
+                    <label for="exampleDatepicker1" class="form-label">Select a date</label>
+
+                </div> --}}
+              </div>
+
+              
+
+              
+              <button type="submit" class="btn btn-success btn-lg mb-1">Submit</button>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</section>
+{{#if MonthlyReport}}
+<div class="container" style="align-items: center;">
+
+<h1  style="color: brown;">Sales Report</h1>
+ <table id="example" style="text-align: center;" class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Product</th>
+      <th scope="col">Sold Out</th>
+      <th scope="col">Price</th>
+      <th scope="col">Total Sale</th>
+      
+    </tr>
+  </thead>
+  {{#each MonthlyReport}}
+  <tbody>
+    
+    <tr>
+
+      <th scope="row">{{this.productname}}</th>
+      <td>{{this.salesQuantity}}</td>
+      <td>{{this.price}}</td>
+      <td style="color: green;" >{{this.totalSale}}</td>
+        
+          
+    </tr>
+    
+    
+  </tbody>
+  {{/each}}
+</table>
+</div>
+{{else}}
+
+{{/if}}
+
+  {{#if NODATA}}
+<div class="container" style="align-items:center ;"> 
+
+<img style="margin-left: 14rem;" src="/images/nodata.png" width="500rem" height="500rem">
+</div>
+{{/if}}
+</body>
+ <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+   <script>
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>

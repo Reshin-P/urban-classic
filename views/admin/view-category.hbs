@@ -1,0 +1,103 @@
+<div class="container">
+        <table class="table" id="adminTable">
+  <thead>
+    <tr>
+   
+      <th scope="col">Category</th>
+     
+      {{!-- <th scope="col">Permission</th> --}}
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {{#each category}}
+    <tr>
+     
+     
+     
+      <td>{{this.category}}</td>
+     
+      <td>
+
+
+
+             <a href="#" onclick="CategoryEdit('{{this._id}}')"  type="submit"> <button type="button" class="btn btn-warning">Edit</button></a>
+     
+   
+      <a href="#" onclick="DeleteCategory('{{this._id}}')"  type="submit"> <button type="button" class="btn btn-danger">
+         
+          
+          
+           Delete </button></a>
+     
+     
+     
+        
+
+
+
+      </td>
+
+    </tr>
+
+    {{/each}}
+   
+  </tbody>
+</table>
+<!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+      </section>
+      </div>
+      
+    <script>
+      function CategoryEdit(id){
+      
+
+        Swal.fire({
+  title: 'Are you sure?',
+  text: "Do You Want To Edit!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    window.location="/admin/edit/"+id
+  
+  }
+})
+        
+      }
+
+
+
+      function DeleteCategory(id){
+    
+          Swal.fire({
+  title: 'Are you sure?',
+  text: "Do You Want To Edit!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+    window.location="/admin/deleteCategory/"+id
+  
+  }
+})
+      }
+  
+    </script>

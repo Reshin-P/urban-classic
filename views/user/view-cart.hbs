@@ -1,0 +1,340 @@
+<body>
+
+
+
+
+
+    <!-- Breadcrumb Section End -->
+    {{#if NoProductsINCart}}
+    <div class="container vh-100" style=" align-items: center;">
+        <a href="/"> <img src="/images/emptycart.png"></a>
+    </div>
+
+    {{else}}
+
+    <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad mh-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            {{#each products}}
+                            <tbody>
+
+                                <tr>
+
+
+
+                                    <td class="product__cart__item">
+                                        <div class="product__cart__item__pic" style="width: 70px ; height: 50px;">
+
+                                            <img src="/images/productImages/{{this.product._id}}image1.jpg" alt="">
+
+                                        </div>
+
+                                      
+                                    </td>
+                                    <td>
+                                          <div class="product__cart__item__text">
+                                            <h6>{{this.product.productname}}</h6>
+                                            <h5 id="Productprice">{{this.product.price}}</h5>
+                                        </div>
+                                    </td>
+
+
+                                    <td class="quantity__item">
+                                        <div class="quantity">
+                                            <div class="pro-qty-2">
+                                                <div class="d-flex">
+                                                    <button type="button" class="btn btn-white"
+                                                        onclick="ChangeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',-1)">-</button>
+                                                    <button type="button" class="btn btn-dark"
+                                                        id="{{this.product._id}}"> {{this.quantity}}</button>
+
+
+                                                    <button type="button" class="btn btn-white"
+                                                        onclick="ChangeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}',1)">+</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="cart__price " id="{{this.product._id}}1">{{this.total}}</td>
+                                    <td class="cart__close"><a
+                                            onclick="removeFromCart('{{this._id}}','{{this.product._id}}')"
+                                            onmouseover=""><i class="fa fa-close"></i></td></a>
+                                </tr>
+
+                                <tr>
+
+                            </tbody>
+                            {{/each}}
+                        </table>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a href="/">Continue Shopping</a>
+                            </div>
+                        </div>
+                        {{!-- <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn update__btn">
+                                <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
+                            </div>
+                        </div> --}}
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="cart__discount">
+                        <h6>Discount codes</h6>
+                        <form id="ApplyCoupon">
+                            {{!-- <input type="text" name="coupon" placeholder="Coupon code"> --}}
+                            <input type="text" name="coupon" placeholder="Enter the coupon">
+
+                            <button type="submit">Apply</button>
+
+
+                        </form>
+                        <h6 id="CouponMsg"></h6>
+                    </div>
+                    <div class="cart__total">
+                        <h6>Cart total</h6>
+                        <ul>
+                            <li>Total ₹ <span id="tojtal"> {{total}}</span></li>
+                            <li>Coupon ₹ <span id="coupon1"> {{userCoupDis}}</span></li>
+                            <li>Last Total ₹ <span id="total"> {{lastprice}}</span></li>
+
+                        </ul>
+                        {{#if NoProductsINCart}}
+
+                        {{else}}
+                        <a href="/cart/checkOut" class="primary-btn">Proceed to checkout</a>
+                        {{/if}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shopping Cart Section End -->
+
+    <!-- Footer Section Begin -->
+
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    {{/if}}
+    <!-- Search End -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+<script>
+
+    function ChangeQuantity(CartId, ProdId, userId, Count) {
+
+        let quantity = parseInt(document.getElementById(ProdId).innerHTML)
+        let price = parseInt(document.getElementById('Productprice').innerHTML)
+
+
+
+        Count = parseInt(Count)
+        if (quantity == 1 && Count == -1) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    
+        $.ajax({
+            url: '/cart/ChangeQuantity',
+            data: {
+                cart: CartId,
+                product: ProdId,
+                count: Count,
+                quantity: quantity,
+                user: userId
+
+            },
+
+            method: "post",
+            success: (response) => {
+
+                if (response.removeProduct) {
+                
+                    location.reload()
+                } else {
+                    console.log(response)
+
+                    let sub = parseInt(document.getElementById(ProdId + "1").innerHTML)
+
+                    document.getElementById(ProdId).innerHTML = quantity + Count
+                    document.getElementById("total").innerHTML = response.total
+
+                    if (Count == 1) {
+
+                        document.getElementById(ProdId + "1").innerHTML = sub + price
+                    } else if (Count == -1) {
+                        document.getElementById(ProdId + "1").innerHTML = sub - price
+                    }
+
+                }
+            }
+
+
+        })
+                   
+                }
+            })
+
+
+        }else{
+
+        
+
+
+
+
+
+        $.ajax({
+            url: '/cart/ChangeQuantity',
+            data: {
+                cart: CartId,
+                product: ProdId,
+                count: Count,
+                quantity: quantity,
+                user: userId
+
+            },
+
+            method: "post",
+            success: (response) => {
+
+                if (response.removeProduct) {
+                  
+                    location.reload()
+                } else {
+                    console.log(response)
+
+                    let sub = parseInt(document.getElementById(ProdId + "1").innerHTML)
+
+                    document.getElementById(ProdId).innerHTML = quantity + Count
+                    document.getElementById("total").innerHTML = response.total
+
+                    if (Count == 1) {
+
+                        document.getElementById(ProdId + "1").innerHTML = sub + price
+                    } else if (Count == -1) {
+                        document.getElementById(ProdId + "1").innerHTML = sub - price
+                    }
+
+                }
+            }
+
+
+        })
+        }
+    }
+</script>
+<script>
+    function removeFromCart(CartId, ProdId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/cart/removeFromCart',
+                    data: {
+                        cart: CartId,
+                        product: ProdId
+                    },
+                    method: 'post',
+                    success: (response) => {
+                        if (response.removeProduct) {
+                            location.reload()
+                        }
+                    }
+                })
+                Swal.fire(
+                    'Deleted!',
+                    'Product Removed From Cart.',
+                    'success'
+                )
+            }
+        })
+
+
+    }
+</script>
+
+<script>
+
+
+    $('#ApplyCoupon').submit((e) => {
+
+        e.preventDefault()
+        $.ajax({
+            url: '/offer/ApplyCoupon',
+            method: 'post',
+            data: $('#ApplyCoupon').serialize(),
+            success: (response) => {
+                if (response.CoupenUsed) {
+                    document.getElementById('CouponMsg').innerHTML = "Coupon Already Used"
+                }
+                else if (response.Coupon) {
+                    let total = document.getElementById('total').innerHTML
+                    document.getElementById('CouponMsg').innerHTML = "Coupon Applied"
+                    document.getElementById("total").innerHTML = total - response.CoupDis
+                    document.getElementById("coupon1").innerHTML = response.CoupDis
+
+                }
+                else if (response.NoCoupon) {
+                    document.getElementById('CouponMsg').innerHTML = "No Coupon Found"
+                }
+                else if (response.OneCouponUsed) {
+                    document.getElementById('CouponMsg').innerHTML = "Already One Coupon Used"
+                }
+
+            }
+        })
+    })
+</script>

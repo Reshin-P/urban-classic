@@ -1,0 +1,136 @@
+<div class="container">
+        <table class="table" id="adminTable">
+  <thead>
+    <tr>
+   
+      <th scope="col">User Name</th>
+      <th scope="col">Email Id</th>
+      {{!-- <th scope="col">Permission</th> --}}
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {{#each user}}
+    <tr>
+     
+     
+      <td>{{this.firstname}}</td>
+      <td>{{this.email}}</td>
+      {{!-- <td>@mdo</td> --}}
+
+      <td>
+
+    
+     {{#if this.block}}  
+        {{!-- <a href="/admin/unblock/{{this._id}}" onclick="return confirm('clik ok to confirm unblock {{  this.Firstname}}')"  type="submit">  --}}
+        <button onclick="unblock('{{this._id}}','unblock','{{this.firstname}}')" type="button" class="btn btn-warning">Unblock</button></a>
+     
+       {{else}} 
+      {{!-- <a href="/admin/block/{{this._id}}" onclick="return confirm('clik ok to confirm block {{  this.Firstname}}')"  type="submit"> --}}
+       <button onclick="block('{{this._id}}','{{this.firstname}}')" type="button" class="btn btn-danger">Block</button></a>
+          
+          
+          
+           
+      {{/if}} 
+     
+        
+
+
+
+      </td>
+
+    </tr>
+
+    {{/each}}
+   
+  </tbody>
+</table>
+<!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+      </section>
+      </div>
+      
+    <script>
+function unblock(userID,name){
+  
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "Do you want to unblock this person",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Unblock it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+      Swal.fire(
+      'Unlocked!',
+     name+ 'Unblocked',
+      'success'
+    )
+
+      $.ajax({
+      url:'/admin/unblock/'+userID,
+      method:'get',
+      success:(response)=>{
+        
+location.reload()
+      }
+      
+    })
+  
+  }
+})
+
+  
+}
+
+function block(userID,name){
+  
+      Swal.fire({
+  title: 'Are you sure?',
+  text: "Do you want to block this person",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Block it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+
+   
+    Swal.fire(
+      'Blocked!',
+     name+ ' blocked',
+      'success'
+    )
+      $.ajax({
+      url:'/admin/block/'+userID,
+      method:'get',
+      success:(response)=>{
+        
+
+        
+          location.reload()
+        
+      }
+      
+    })
+  }
+})
+
+   
+}
+
+    </script>

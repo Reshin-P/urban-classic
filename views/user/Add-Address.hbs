@@ -1,0 +1,211 @@
+
+<section>
+     
+    <div class=" container min-vh-100" style="margin-top: 8rem;">
+      <div id="welcomeDiv" >
+            <form method="post" id="Add_Address_form" action="/add-addressFromProfile">
+
+                <div class="row">
+
+                    <div class="col-lg-8 col-md-6">
+                        {{!-- <h6 class="coupon__code"><span class="icon_tag_alt"></span> Have a coupon? <a
+                                href="#">Click
+                                here</a> to enter your code</h6> --}}
+                        <h6 class="checkout__title">Add Address</h6>
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <div class="checkout__input">
+                                    <span class="error_form" id="name_error_message"></span>
+                                    <p> Name<span>*</span></p>
+                                    <input type="text" id="form_name" name="name">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <span class="error_form" id="mob_error_message"></span>
+                                    <p>Mob No<span>*</span></p>
+                                    <input type="text" id="form_mobno" name="ALTmobno">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- <div class="checkout__input">
+                            <p>Country<span>*</span></p>
+                            <input type="text">
+                        </div> --}}
+                        <div class="checkout__input">
+                            <span class="error_form" id="address_error_message"></span>
+                            <p>Address<span>*</span></p>
+                            <input type="text" name="address" id="form_address" placeholder="Full Address"
+                                class="checkout__input__add">
+                            {{!-- <input type="text" placeholder="Apartment, suite, unite ect (optinal)"> --}}
+                        </div>
+                        {{!-- <div class="checkout__input">
+                            <p>Town/City<span>*</span></p>
+                            <input type="text">
+                        </div> --}}
+                        <div class="checkout__input">
+                            <p>State<span>*</span></p>
+                            <span class="error_form" id="state_error_message"></span>
+                            <input name="state" id="form_state" type="text">
+                        </div>
+                        <div class="checkout__input">
+                            <p>Postcode / ZIP<span>*</span></p>
+                            <span class="error_form" id="pincode_error_message"></span>
+                            <input type="text" id="form_pincode" name="pincode">
+                        </div>
+                        <button type="submit" class="btn btn-dark">Add Address </button>
+
+
+            </form>
+        </div>
+        </div>
+
+</section>
+
+
+<script type="text/javascript">
+    $("#name_error_message").hide()
+
+    $("#mobno_error_message").hide()
+    $("#address_error_message").hide()
+    $("#state_error_message").hide()
+    $("#pincode_error_message").hide()
+
+
+    var error_name = false;
+
+    var error_mobno = false;
+    var error_address = false;
+    var error_state = false;
+    var error_pincode = false;
+
+    $("#form_name").focusout(function () {
+
+        check_name();
+    });
+    $("#form_mobno").focusout(function () {
+        check_mob();
+    });
+    $("#form_address").focusout(function () {
+        check_address();
+    });
+    $("#form_state").focusout(function () {
+        check_state();
+    });
+    $("#form_pincode").focusout(function () {
+        check_pincode();
+    });
+
+
+    function check_name() {
+        var pattern = /^[a-zA-Z" "]*$/;
+        var fname = $("#form_name").val();
+        if (pattern.test(fname) && fname !== '') {
+            $("#name_error_message").hide();
+            $("#form_name").css("border-bottom", "2px solid #34F458");
+        } else {
+            $("#name_error_message").html("Should contain only Characters");
+            $("#name_error_message").show();
+            $("#form_name").css("border-bottom", "2px solid #F90A0A");
+            error_name = true;
+                        
+
+        }
+    }
+
+    function check_mob() {
+        var pattern = /([0-9]{10})|(\([0-9]{3}\)\s+[0-9]{3}\-[0-9]{4})/;
+        var mob = $("#form_mobno").val();
+        if (pattern.test(mob) && mob !== '' && mob.length == 10) {
+            $("#mob_error_message").hide();
+            $("#form_mobno").css("border-bottom", "2px solid #34F458");
+        } else {
+            $("#mob_error_message").html("Invalid Mobile NO");
+            $("#mob_error_message").show();
+            $("#form_mobno").css("border-bottom", "2px solid #F90A0A");
+            error_mobno = true;
+         
+        }
+    }
+
+
+
+    function check_address() {
+        var pattern = /^[a-zA-Z" "]*$/;
+        var fname = $("#form_address").val();
+        if (pattern.test(fname) && fname !== '') {
+            $("#address_error_message").hide();
+            $("#form_address").css("border-bottom", "2px solid #34F458");
+        } else {
+            $("#address_error_message").html("Should contain only Characters");
+            $("#address_error_message").show();
+            $("#form_address").css("border-bottom", "2px solid #F90A0A");
+           
+            error_address = true;
+        }
+    }
+    function check_state() {
+        var pattern = /^[a-zA-Z]*$/;
+        var fname = $("#form_state").val();
+        if (pattern.test(fname) && fname !== '') {
+            $("#state_error_message").hide();
+            $("#form_state").css("border-bottom", "2px solid #34F458");
+        } else {
+            $("#state_error_message").html("Should contain only Characters");
+            $("#state_error_message").show();
+            $("#form_state").css("border-bottom", "2px solid #F90A0A");
+             ;
+        }
+    }
+
+    function check_pincode() {
+        var pattern = /([0-9]{6})|(\([0-9]{3}\)\s+[0-9]{3}\-[0-9]{4})/;
+        var mob = $("#form_pincode").val();
+
+        if (pattern.test(mob) && mob !== '' && mob.length == 6) {
+            $("#pincode_error_message").hide();
+            $("#form_pincode").css("border-bottom", "2px solid #34F458");
+        } else {
+            $("#pincode_error_message").html("Invalid Mobile NO");
+            $("#pincode_error_message").show();
+            $("#form_pincode").css("border-bottom", "2px solid #F90A0A");
+            error_pincode = true;
+        
+        }
+    }
+
+
+    $("#Add_Address_form").submit(function () {
+        
+         error_name = false;
+
+         error_mobno = false;
+         error_address = false;
+         error_state = false;
+         error_pincode = false;
+
+        check_name();
+        check_mob();
+        check_address();
+        check_state();
+        check_pincode();
+
+
+
+        if (error_name === false && error_mobno === false && error_address === false && error_state === false && error_pincode === false) {
+
+            return true;
+        } else {
+           Swal.fire('Fill The Form Properly')
+return false;
+        }
+
+
+    });
+
+
+
+</script>

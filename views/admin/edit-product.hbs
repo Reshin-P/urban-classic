@@ -1,0 +1,878 @@
+
+{{!-- ------------------------------------------------------------------------------------------------------------------------------------------- --}}
+            <!-- Main Content -->
+             <section class="h-100  bg-white">
+  <div class="container py-5 h-100  " >
+    <div class="row d-flex justify-content-center align-items-center h-100" >
+      <div class="col-12">
+        <div class="card card-registration card-registration-2" >
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <h3 class="fw-normal mb-5" style="color: #4835d4;">Edit Product</h3>
+
+                  <form action="/product/edit-product/{{product._id}}" id="product_form" enctype="multipart/form-data" method="post">
+                   <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+
+                      <div class="form-outline">
+                        
+                     
+                        <input type="text" id="form_productname" name="productname" value="{{product.productname}}" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Examplev2">Product Name</label>
+                           <h5 class="error_form text-danger" id="productname_error_message"></h5>
+                      </div>
+
+                    </div>
+                    
+                    <div class="col-md-6 mb-4 pb-2">
+
+                      <div class="form-outline">
+                        <input type="text" id="form_brand" name="brand" value="{{product.brand}}" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Examplev3">Brand</label>
+                          <h5 class="error_form text-danger" id="brand_error_message"></h5>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="mb-4 pb-2">
+                    <label>Category</label>
+                    <select name="category" class="select">
+                        {{#each category}}
+   
+  <option  value={{this.category}}>{{this.category}}</option>
+  {{/each}}
+                    </select>
+                     <label style="margin-left: 2PX;">Sub Category</label>
+                    <select name="subcategory" class="select">
+                       {{#each subcategory}}
+   
+  <option  value={{this.subcategory}}>{{this.subcategory}}</option>
+  {{/each}}
+                    </select>
+                  </div>
+
+                  <div class="mb-4 pb-2">
+                    <div class="form-outline">
+                      <input type="text" id="form_description" value="{{product.description}}" height="20rem" name="description" class="form-control form-control-lg" />
+                      <label class="form-label" for="form3Examplev4">Description</label>
+                        <h5 class="error_form text-danger" id="description_error_message"></h5>
+                    </div>
+                  </div>
+                  
+                  {{!-- <div class="mb-4 pb-2">
+                    <div class="form-outline">
+                      <input type="number" id="form_price" height="20rem" name="price" class="form-control form-control-lg" />
+                      <label class="form-label" for="form3Examplev4">Price</label>
+                           <h5 class="error_form text-danger" id="price_error_message"></h5>
+                    </div>
+                  </div> --}}
+                   <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+
+                      <div class="form-outline">
+                        
+                     
+                        <input type="number" id="form_price" height="20rem" value="{{product.price}}" name="price" class="form-control form-control-lg" />
+                      <label class="form-label" for="form3Examplev4">Price</label>
+                           <h5 class="error_form text-danger" id="price_error_message"></h5>
+                      </div>
+
+                    </div>
+                    
+                    <div class="col-md-6 mb-4 pb-2">
+
+                      <div class="form-outline">
+                        <input type="number" id="form_quantity" name="quantity" value="{{product.quantity}}" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Examplev3">Quantity</label>
+                          <h5 class="error_form text-danger" id="quantity_erroer_message"></h5>
+                      </div>
+
+                    </div>
+                  </div>
+                   <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+
+                      <div class="form-outline">
+                        
+                     
+                          <label>Choose Size</label>
+                    <select name="size" class="select">
+                      <option value="s">Small</option>
+                      <option value="m">Medium</option>
+                      <option value="l">Large</option>
+                      <option value="xl">Xtra Large</option>
+                    </select>
+                      </div>
+
+                    </div>
+                    
+                    <div class="col-md-6 mb-4 pb-2">
+
+                      <div class="form-outline">
+                        <label>Choose Color</label>
+                    <select name="color" class="select">
+                      <option value="red">Red</option>
+                      <option value="blue">Blue</option>
+                      <option value="white">White</option>
+                      <option value="black">Black</option>
+                      <option value="yello">Yellow</option>
+                       <option value="brown">Brown</option>
+                        <option value="pink">Pink</option>
+                         <option value="grey">Grey</option>
+                         
+                    </select>
+                      </div>
+
+                    </div>
+                  </div>
+                  
+                  
+
+
+                  <div class="row">
+                    <div class="col-md-6 mb-4 pb-2 mb-md-0 pb-md-0">
+
+                     
+                    </div>
+                   
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-lg-6  text-black">
+                <div class="p-5">
+                  <h3 class="fw-normal mb-5"></h3>
+
+                 
+
+                  
+                
+                  <div class="mb-4 pb-2">
+                    <div class="form-outline form-white" >
+                      <div style="height: 13rem;">
+                         <label class="form-label" for="form3Examplea2">Choose your Images</label>
+                    
+                <input class="form-control form-control-lg" name="image1" id="formFileLg" type="file" >
+                <h5 class="error_form text-danger" id="image1_error_message"></h5>
+                <img src="" id="image1" style="width:110px; margin-left: 7rem; margin-top: 2px ;">
+                 <div class="form-group">
+                <div id="image-box" class="image-container"></div>
+                <button class="btn btn-outline-info" id="crop-btn"
+                    style=" margin-top: 10px; display: none;" type="button">Crop</button>
+            </div>
+
+                      </div>
+                       
+                        <div style="height: 13rem;">
+                         <input class="form-control form-control-lg"  name="image2" id="formFileLg2" type="file" >
+                         <h5 class="error_form text-danger" id="image2_error_message"></h5>
+                         <img src="" id="image2" style="width:110px; margin-left: 7rem; margin-top: 2px ;" >
+                       </div>
+                        <div style="height: 13rem;">
+                        <input class="form-control form-control-lg" name="image3" id="formFileLg3" type="file" >
+                        <h5 class="error_form text-danger" id="image3_error_message"></h5>
+                        
+                       <img src="" id="image3" style="width:110px; margin-left: 7rem; margin-top: 2px ;">      
+                       <button type="submit" style="margin-left: 14rem; margin-top: 10px;" class="btn btn-primary btn-lg mb-5" data-mdb-ripple-color="dark" id="confirm-btn">Edit Product</button>              
+                      </div>
+                      
+                    
+               
+                   
+                    
+               
+                  
+                  </div>
+                   
+              
+                  </div>
+                  </div>
+
+                  </form>
+
+                  <div class="col-md-5">
+           
+        </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{!-- ------------------------------------------------------------------------------------------------------------------------------------------- --}}
+    
+        
+      
+
+        </div>
+ 
+
+    </div>
+   
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/js/demo/chart-area-demo.js"></script>
+    <script src="/js/demo/chart-pie-demo.js"></script>
+    <script src="/js/demo/chart-bar-demo.js"></script>
+
+</body>
+
+</html>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
+
+
+
+<script type="text/javascript">
+$("#productname_error_message").hide()
+$("#brand_error_message").hide()
+$("#description_error_message").hide()
+$("#price_error_message").hide()
+$("#quantity_erroer_message").hide()
+$("#image1_error_message").hide()
+$("#image2_error_message").hide()
+$("#image3_error_message").hide()
+
+
+
+var error_productname=false;
+var error_brand=false;
+var error_description=false;
+var error_price=false;
+var error_quantity=false
+var error_image1=false
+var error_image2=false
+var error_image3=false
+
+   $("#form_productname").focusout(function(){
+            check_productname();
+         });
+         $("#form_brand").focusout(function() {
+            check_brand();
+         });
+         $("#form_description").focusout(function() {
+           check_description()
+         });
+         $("#form_price").focusout(function() {
+            check_price();
+         });
+          $("#form_quantity").focusout(function() {
+            check_quantity();
+         });
+          $("#formFileLg").focusout(function() {
+            check_image1();
+         });
+          $("#formFileLg2").focusout(function() {
+            check_image2();
+         });
+          $("#formFileLg3").focusout(function() {
+            check_image3();
+         });
+        
+        
+
+         function check_productname() {
+            var pattern = /^[a-zA-Z" "]*$/;
+            var pname = $("#form_productname").val();
+            if (pattern.test(pname) && pname !== '') {
+               $("#productname_error_message").hide();
+               $("#form_productname").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#productname_error_message").html("Should contain only Characters");
+               $("#productname_error_message").show();
+               $("#form_productname").css("border-bottom","2px solid #F90A0A");
+               error_productname = true;
+            }
+         }
+
+         function check_brand() {
+            var pattern = /^[a-zA-Z " "]*$/;
+            var brand = $("#form_brand").val()
+            if (pattern.test(brand) && brand !== '') {
+               $("#brand_error_message").hide();
+               $("#form_brand").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#brand_error_message").html("Should contain only Characters");
+               $("#brand_error_message").show();
+               $("#form_brand").css("border-bottom","2px solid #F90A0A");
+               error_brand = true;
+            }
+         }
+           function check_description() {
+            var pattern = /^[a-zA-Z " "]*$/;
+            var description = $("#form_brand").val()
+            if (pattern.test(description) && description !== '') {
+               $("#description_error_message").hide();
+               $("#form_description").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#description_error_message").html("Should contain only Characters");
+               $("#description_error_message").show();
+               $("#form_description").css("border-bottom","2px solid #F90A0A");
+               error_description = true;
+            }
+         }
+
+        
+
+       
+       
+          function check_price() {
+            var pattern = /^[0-9]+$/
+            var price= $("#form_price").val();
+            if (pattern.test(price) && price !== '') {
+               $("#price_error_message").hide();
+               $("#form_price").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#price_error_message").html("Only Numbers");
+               $("#price_error_message").show();
+               $("#form_price").css("border-bottom","2px solid #F90A0A");
+               error_price = true;
+            }
+         }
+
+          function check_quantity() {
+            var pattern = /^[0-9]+$/
+            var price= $("#form_quantity").val();
+            if (pattern.test(price) && price !== '') {
+               $("#quantity_erroer_message").hide();
+               $("#form_quantity").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#quantity_erroer_message").html("Only Numbers");
+               $("#quantity_erroer_message").show();
+               $("#form_quantity").css("border-bottom","2px solid #F90A0A");
+               error_quantity = true;
+            }
+         }
+
+         function check_image1(){
+           var image1=$("#formFileLg").val();
+           if(image1!==""){
+             $("#image1_error_message").hide();
+               $("#formFileLg").css("border-bottom","2px solid #34F458");
+          
+           }else{
+                $("#image1_error_message").html("choose image");
+               $("#image1_error_message").show();
+               $("#formFileLg").css("border-bottom","2px solid #F90A0A");
+               error_image1 = true;
+           }
+         }
+         function check_image2(){
+           var image1=$("#formFileLg2").val();
+           if(image1!==""){
+             $("#image2_error_message").hide();
+               $("#formFileLg2").css("border-bottom","2px solid #34F458");
+          
+           }else{
+                $("#image2_error_message").html("choose image");
+               $("#image2_error_message").show();
+               $("#formFileLg2").css("border-bottom","2px solid #F90A0A");
+               error_image2 = true;
+           }
+         }
+         function check_image3(){
+           var image1=$("#formFileLg3").val();
+           if(image1!==""){
+             $("#image3_error_message").hide();
+               $("#formFileLg3").css("border-bottom","2px solid #34F458");
+          
+           }else{
+                $("#image3_error_message").html("choose image");
+               $("#image3_error_message").show();
+               $("#formFileLg3").css("border-bottom","2px solid #F90A0A");
+               error_image3 = true;
+           }
+         }
+
+         $("#product_form").submit(function() {
+          error_productname=false;
+           error_brand=false;
+           error_description=false;
+           error_price=false;
+           error_quantity=false
+           error_image1=false
+           error_image2=false
+           
+           error_image3=false
+           
+
+           
+
+            check_productname()
+            check_brand()
+            check_description()
+            check_price()
+            check_quantity()
+            check_image1()
+             check_image1()
+
+             check_image2()         
+              check_image3()   
+
+            
+
+
+            if (error_productname=== false && error_brand === false && error_description === false && error_price === false&&error_quantity==false &&error_image1===false &&error_image2===false  &&error_image3===false ) {
+               
+               return true;
+            } else {
+               alert("Please Fill the form Correctly");
+               return false;
+            }
+
+
+         });
+     
+
+
+</script>
+<script>
+  const imagebox = document.getElementById('image-box')
+    // crop-btn is the id of button that will trigger the event of change original file with cropped file.
+    const crop_btn = document.getElementById('crop-btn')
+    // id_image is the id of the input tag where we will upload the image
+    const input = document.getElementById('formFileLg')
+    const input2 = document.getElementById('formFileLg2')
+    const input3 = document.getElementById('formFileLg3')
+
+    var allowedExtensions =
+        /(\.jpg|\.jpeg|\.png|\.gif|\.webp)$/i;
+
+    var filePath = input.value;
+
+    // When user uploads the image this event will get triggered
+    input.addEventListener('change', () => {
+        if (!allowedExtensions.exec(input.value)) {
+            alert('Invalid file type');
+            input.value = '';
+        }
+        else {
+            // Getting image file object from the input variable
+            const img_data = input.files[0]
+            // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+            // The new object URL represents the specified File object or Blob object.
+            const url = URL.createObjectURL(img_data)
+
+            // Creating a image tag inside imagebox which will hold the cropping view image(uploaded file) to it using the url created before.
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%;">`
+
+            // Storing that cropping view image in a variable
+            const image = document.getElementById('image')
+
+            // Displaying the image box
+            document.getElementById('image-box').style.display = 'block'
+            // Displaying the Crop buttton
+            document.getElementById('crop-btn').style.display = 'block'
+            // Hiding the Post button
+            document.getElementById('confirm-btn').style.display = 'none'
+
+            // Creating a croper object with the cropping view image
+            // The new Cropper() method will do all the magic and diplay the cropping view and adding cropping functionality on the website
+            // For more settings, check out their official documentation at https://github.com/fengyuanchen/cropperjs
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: false,
+                zoomable: false,
+                movable: false,
+                aspectRatio: 1 / 1.3,
+                //  preview: '.preview',
+                minCropBoxWidth: 200,
+                minCropBoxHeight: 200,
+            })
+
+            // When crop button is clicked this event will get triggered
+            crop_btn.addEventListener('click', () => {
+                // This method coverts the selected cropped image on the cropper canvas into a blob object
+                cropper.getCroppedCanvas().toBlob((blob) => {
+
+                    // Gets the original image data
+                    let fileInputElement = document.getElementById('formFileLg');
+                    // Make a new cropped image file using that blob object, image_data.name will make the new file name same as original image
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    // Create a new container
+                    let container = new DataTransfer();
+                    // Add the cropped image file to the container
+                    container.items.add(file);
+                    // Replace the original image file with the new cropped image file
+                    fileInputElement.files = container.files;
+                    console.log(container.files[0])
+                    let img = container.files[0]
+                    const url = URL.createObjectURL(img)
+                    document.getElementById('image1').src = url
+
+
+
+
+                    // Hide the cropper box
+                    document.getElementById('image-box').style.display = 'none'
+                    // Hide the crop button
+                    document.getElementById('crop-btn').style.display = 'none'
+                    // Display the Post button
+                    document.getElementById('confirm-btn').style.display = 'block'
+
+                });
+            });
+        }
+    });
+
+
+     // When user uploads the image this event will get triggered
+    input2.addEventListener('change', () => {
+        if (!allowedExtensions.exec(input2.value)) {
+            alert('Invalid file type');
+            input2.value = '';
+        }
+        else {
+            // Getting image file object from the input variable
+            const img_data = input2.files[0]
+            // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+            // The new object URL represents the specified File object or Blob object.
+            const url = URL.createObjectURL(img_data)
+
+            // Creating a image tag inside imagebox which will hold the cropping view image(uploaded file) to it using the url created before.
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%;">`
+
+            // Storing that cropping view image in a variable
+            const image = document.getElementById('image')
+
+            // Displaying the image box
+            document.getElementById('image-box').style.display = 'block'
+            // Displaying the Crop buttton
+            document.getElementById('crop-btn').style.display = 'block'
+            // Hiding the Post button
+            document.getElementById('confirm-btn').style.display = 'none'
+
+            // Creating a croper object with the cropping view image
+            // The new Cropper() method will do all the magic and diplay the cropping view and adding cropping functionality on the website
+            // For more settings, check out their official documentation at https://github.com/fengyuanchen/cropperjs
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: false,
+                zoomable: false,
+                movable: false,
+                aspectRatio: 1 / 1.3,
+                //  preview: '.preview',
+                minCropBoxWidth: 200,
+                minCropBoxHeight: 200,
+            })
+
+            // When crop button is clicked this event will get triggered
+            crop_btn.addEventListener('click', () => {
+                // This method coverts the selected cropped image on the cropper canvas into a blob object
+                cropper.getCroppedCanvas().toBlob((blob) => {
+
+                    // Gets the original image data
+                    let fileInputElement = document.getElementById('formFileLg2');
+                    // Make a new cropped image file using that blob object, image_data.name will make the new file name same as original image
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    // Create a new container
+                    let container = new DataTransfer();
+                    // Add the cropped image file to the container
+                    container.items.add(file);
+                    // Replace the original image file with the new cropped image file
+                    fileInputElement.files = container.files;
+                    console.log(container.files[0])
+                    let img = container.files[0]
+                    const url = URL.createObjectURL(img)
+                    document.getElementById('image2').src = url
+
+
+
+
+                    // Hide the cropper box
+                    document.getElementById('image-box').style.display = 'none'
+                    // Hide the crop button
+                    document.getElementById('crop-btn').style.display = 'none'
+                    // Display the Post button
+                    document.getElementById('confirm-btn').style.display = 'block'
+
+                });
+            });
+        }
+    });
+
+
+     // When user uploads the image this event will get triggered
+    input3.addEventListener('change', () => {
+        if (!allowedExtensions.exec(input3.value)) {
+            alert('Invalid file type');
+            input3.value = '';
+        }
+        else {
+            // Getting image file object from the input variable
+            const img_data = input3.files[0]
+            // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+            // The new object URL represents the specified File object or Blob object.
+            const url = URL.createObjectURL(img_data)
+
+            // Creating a image tag inside imagebox which will hold the cropping view image(uploaded file) to it using the url created before.
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%;">`
+
+            // Storing that cropping view image in a variable
+            const image = document.getElementById('image')
+
+            // Displaying the image box
+            document.getElementById('image-box').style.display = 'block'
+            // Displaying the Crop buttton
+            document.getElementById('crop-btn').style.display = 'block'
+            // Hiding the Post button
+            document.getElementById('confirm-btn').style.display = 'none'
+
+            // Creating a croper object with the cropping view image
+            // The new Cropper() method will do all the magic and diplay the cropping view and adding cropping functionality on the website
+            // For more settings, check out their official documentation at https://github.com/fengyuanchen/cropperjs
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: false,
+                zoomable: false,
+                movable: false,
+                aspectRatio: 1 / 1.3,
+                //  preview: '.preview',
+                minCropBoxWidth: 200,
+                minCropBoxHeight: 200,
+            })
+
+            // When crop button is clicked this event will get triggered
+            crop_btn.addEventListener('click', () => {
+                // This method coverts the selected cropped image on the cropper canvas into a blob object
+                cropper.getCroppedCanvas().toBlob((blob) => {
+
+                    // Gets the original image data
+                    let fileInputElement = document.getElementById('formFileLg3');
+                    // Make a new cropped image file using that blob object, image_data.name will make the new file name same as original image
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    // Create a new container
+                    let container = new DataTransfer();
+                    // Add the cropped image file to the container
+                    container.items.add(file);
+                    // Replace the original image file with the new cropped image file
+                    fileInputElement.files = container.files;
+                    console.log(container.files[0])
+                    let img = container.files[0]
+                    const url = URL.createObjectURL(img)
+                    document.getElementById('image3').src = url
+
+
+
+
+                    // Hide the cropper box
+                    document.getElementById('image-box').style.display = 'none'
+                    // Hide the crop button
+                    document.getElementById('crop-btn').style.display = 'none'
+                    // Display the Post button
+                    document.getElementById('confirm-btn').style.display = 'block'
+
+                });
+            });
+        }
+    });
+</script>
+</body>
+
+
+
+{{!-- <section class="h-100 h-custom gradient-custom-2">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="card-body p-0">
+            <div class="row g-0">
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <h3 class="fw-normal mb-5" style="color: #4835d4;">Edit Product</h3>
+
+               
+                     <form action="/product/edit-product/{{product._id}}" id="product_form" enctype="multipart/form-data" method="post">
+                  <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+
+                      <div class="form-outline">
+                        
+                     
+                        <input type="text" id="form_productname" name="productname"   value="{{product.productname}}" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Examplev2">Product Name</label>
+                           <h5 class="error_form text-danger" id="productname_error_message"></h5>
+                      </div>
+
+                    </div>
+                    
+                    <div class="col-md-6 mb-4 pb-2">
+
+                      <div class="form-outline">
+                        <input type="text" id="form_brand" name="brand"  value="{{product.brand}}" class="form-control form-control-lg" />
+                        <label class="form-label" for="form3Examplev3">Brand</label>
+                          <h5 class="error_form text-danger" id="brand_error_message"></h5>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="mb-4 pb-2">
+                    <label>Choose Category</label>
+                    <select name="category" class="select">
+                        {{#each category}}
+   
+  <option  value={{this.category}}>{{this.category}}</option>
+  {{/each}}
+                    </select>
+                  </div>
+
+                  <div class="mb-4 pb-2">
+                    <div class="form-outline">
+                      <input type="text" id="form_description" height="20rem" name="description"  value="{{product.description}}" class="form-control form-control-lg" />
+                      <label class="form-label" for="form3Examplev4">Description</label>
+                        <h5 class="error_form text-danger" id="description_error_message"></h5>
+                    </div>
+                  </div>
+                  
+                  <div class="mb-4 pb-2">
+                    <div class="form-outline">
+                      <input type="text" id="form_price" height="20rem" name="price" value="{{product.price}}" class="form-control form-control-lg" />
+                      <label class="form-label" for="form3Examplev4">Price</label>
+                           <h5 class="error_form text-danger" id="price_error_message"></h5>
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="col-md-6 mb-4 pb-2 mb-md-0 pb-md-0">
+
+                     
+                    </div>
+                   
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-lg-6 bg-indigo text-white">
+                <div class="p-5">
+                  <h3 class="fw-normal mb-5"></h3>
+
+                 
+
+                  <div class="mb-4 pb-2">
+                    <label>Sub Category</label>
+                    <select name="subcategory" class="select">
+                       {{#each subcategory}}
+   
+  <option  value={{this.subcategory}}>{{this.subcategory}}</option>
+  {{/each}}
+                    </select>
+                     <label>Choose Size</label>
+                    <select name="size" class="select">
+                      <option value="s">Small</option>
+                      <option value="m">Medium</option>
+                      <option value="l">Large</option>
+                      <option value="xl">Xtra Large</option>
+                    </select>
+                    
+                  </div>
+                  <div style="margin-left: 7rem;">
+                     <label>Choose Color</label>
+                    <select name="color" class="select">
+                      <option value="red">Red</option>
+                      <option value="blue">Blue</option>
+                      <option value="white">White</option>
+                      <option value="black">Black</option>
+                      <option value="yello">Yellow</option>
+                       <option value="brown">Brown</option>
+                        <option value="pink">Pink</option>
+                         <option value="grey">Grey</option>
+                         
+                    </select>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5 mb-4 pb-2">
+                        <div class="mb-4 pb-2">
+                   
+                  </div>
+
+                      <div class="form-outline form-white">
+                        
+                      </div>
+
+                    </div>
+                    <div class="col-md-7 mb-4 pb-2">
+
+                      <div class="form-outline form-white">
+                        
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="mb-4 pb-2">
+                    <div class="form-outline form-white">
+                      
+                     <label class="form-label" for="form3Examplea2">Choose your Images</label>
+                    <div style="display: flex;">
+                <input class="form-control form-control-lg"  name="image1" id="formFileLg" type="file" >
+                <img width="50rem" src="/images/productImages/{{product._id}}image1.jpg" height="50rem">
+                </div> 
+          
+               <div style="display: flex;" class="my-2">
+                    
+                      <input class="form-control form-control-lg" name="image2" id="formFileLg" type="file" >
+                      <img width="50rem" src="/images/productImages/{{product._id}}image2.jpg" height="50rem">
+                      
+               </div>
+                     
+                  </div>
+                   <div style="display: flex;">
+                   <input class="form-control form-control-lg" name="image3" id="formFileLg" type="file" >
+                   <img width="50rem" src="/images/productImages/{{product._id}}image3.jpg" height="50rem">
+               
+                     </div>
+                  </div>
+                  </div>
+  
+                 
+
+                 
+
+                  <button type="submit" style="margin-left: 14rem;" class="btn btn-light btn-lg mb-5" data-mdb-ripple-color="dark">Edit Product</button>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> --}}
+
+
+
+
+
+
+
+
+
+

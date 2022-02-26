@@ -1,0 +1,48 @@
+<body>
+
+
+  <div class="container">
+
+
+    {{#each UserAddress.address}}
+
+    <div class="list-group-item mt-5">
+
+      <div class="list-group-item-heading">
+        <div class="row radio">
+          <div class="col-xs-3">
+
+            <div>
+
+              <h6 class="ms-2 d-inline mb-1 text-secondary">{{this.place}}</h6>
+              <br />
+              <span class="ms-4">{{this.name}}</span>
+              <span class="ms-2">{{this.ALTmobno}}</span>
+
+              <dl class="dl-small ms-4">
+
+                <dd>{{this.address}}<br />
+                  {{this.state}}<strong>{{this.pincode}}</strong>
+                </dd>
+
+              </dl>
+            </div>
+            <div class="col-xs-5 ms-4">
+
+              <a href="/editAdress/?id={{this._id}}" class="btn btn-sm btn-success">Edit</a>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+    {{/each}}
+  </div>
+</body>
+
+

@@ -1,0 +1,79 @@
+<body>
+<section class="m-3">
+    <table  class="table" id="adminTable">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ProductName</th>
+      <th scope="col">Brand</th>
+      
+         
+      
+      
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      
+      <th scope="col">Image</th>
+       <th scope="col">Actions</th>
+
+      
+      
+    </tr>
+  </thead>
+  <tbody>
+      {{#each getproducts}}
+    <tr>
+    
+      <td>{{this.productname}}</td>
+      <td>{{this.brand}}</td>
+      
+     
+          <td>{{this.quantity}}</td>
+       <td>{{this.price}}</td>
+        <td><img  src="/images/productImages/{{this._id}}image1.jpg"  width="50px" height="50px" >  </td>
+        <td>
+             <a href="/product/editproduct/{{this._id}}" onclick="return confirm('clik ok to confirm Edit {{  this.productname}}')"  type="submit"> <button type="button" class="btn btn-warning">Edit</button></a>
+     <a href="/product/ProductDetails/{{this._id}}"  type="submit"> <button type="button" class="btn btn-primary">View More</button></a>
+     <a href="/offer/ProductOffer/{{this._id}}"  type="submit"> <button type="button" class="btn btn-info">Add Offer</button></a>
+   
+      <a href="/product/deleteproduct/{{this._id}}" onclick="return confirm('clik ok to confirm Delete {{  this.productname}}')"  type="submit"> <button type="button" class="btn btn-danger">Delete</button></a>
+          
+        </td>
+    </tr>
+    {{/each}}
+   
+  </tbody>
+</table>
+
+</section>
+</body>
+
+             
+{{!-- ------------------------------------------------------------------------------------------------------------------------------------------- --}}
+            <!-- Footer -->
+          
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/js/demo/chart-area-demo.js"></script>
+    <script src="/js/demo/chart-pie-demo.js"></script>
+    <script src="/js/demo/chart-bar-demo.js"></script>
+
+
+  
+ 
+<script>
+  $(document).ready( function () {
+    $('#adminTable').DataTable();
+} );
+</script>

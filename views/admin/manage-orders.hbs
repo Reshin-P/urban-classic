@@ -1,0 +1,79 @@
+
+{{!-- ------------------------------------------------------------------------------------------------------------------------------------------- --}}
+            <!-- Main Content -->
+            
+<div class="container">
+    <table class="table table-bordered">
+  <thead>
+     
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">Product</th>
+      <th scope="col">Order Date</th>
+      <th scope="col">Price</th>
+      <th scope="col">Address</th>
+       <th scope="col">Current Status</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+    {{#each AllOrders}}
+  <tbody>
+    <tr>
+         <th scope="row"><img width="100px" src="/images/productImages/{{this.orderedproducts._id}}image1.jpg"></th>
+      <th scope="row">{{this.orderedproducts.productname}}</th>
+      
+        
+      <td>{{this.DeliveryAddress.date}}</td>
+      <td>{{this.orderedproducts.price}}</td>
+      <td>
+          <dl>{{this.DeliveryAddress.name}}</dl>
+           <dl>{{this.DeliveryAddress.address}}</dl>
+            <dl>{{this.DeliveryAddress.pincode}}</dl>
+             <dl>{{this.DeliveryAddress.mobno}}</dl>
+      </td>
+      <td>{{this.products.status}}</td>
+      <td>
+     <form action="/order/changeStatus/{{this._id}}/{{this.products.item}}" method="post" >
+          <select   name="status" id="cars">
+    <option  value="place">Placed</option>
+    <option value="shipped">Shipped</option>
+    <option value="delivered">Delivered</option>
+    <option value="Cancel">Cancel</option>
+  </select>
+  <dl style="margin-top: 1rem;"><button type="submit"  class="btn btn-primary">Update</button></dl>
+      </td>
+    </tr>
+    </form>
+  
+    
+  </tbody>
+  {{/each}}
+</table>
+
+</div>
+
+
+             
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="/js/demo/chart-area-demo.js"></script>
+    <script src="/js/demo/chart-pie-demo.js"></script>
+    <script src="/js/demo/chart-bar-demo.js"></script>
+
+</body>
+
+</html>
+

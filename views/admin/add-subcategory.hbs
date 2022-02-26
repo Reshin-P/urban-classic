@@ -1,0 +1,126 @@
+
+
+<section class="vh-100" style="background-color: #ffffff;">
+  <div class="container one py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+           {{#if addSubCategorySucess}}
+           <div class="alert alert-success" role="alert">
+  {{addSubCategorySucess}}
+</div>
+{{/if}}
+          <div style="margin-bottom: 1rem;">  <h3>Add Sub Category</h3></div>
+
+
+           
+            <form method="post" id="subcategory_form" action="/admin/add-subcategory"> 
+             <div style="margin: 2rem;">
+
+                <label for="cars">Choose Category:</label>
+
+
+<select name="category" id="" required>
+
+    {{#each category}}
+   
+  <option  value={{this.category}}>{{this.category}}</option>
+  {{/each}}
+  
+</select>
+
+
+            </div>
+
+            <div class="form-outline mb-4">
+              <h5 class="error_form text-danger" id="subcategory_error_message"></h5>
+              <input type="text" id="form_subcategory" name="subcategory" class="form-control form-control-lg" />
+                    
+              <label class="form-label" for="typeEmailX-2">Sub Category  Name</label>
+            </div>
+       
+
+         
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Add Sub Category</button>
+            </form>
+
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+</section>
+
+<script type="text/javascript">
+
+
+$("#subcategory_error_message").hide()
+
+
+var error_subcategory=false;
+
+
+
+   
+         $("#form_subcategory").focusout(function() {
+            check_subcategory();
+         });
+         
+        
+
+
+         function check_subcategory() {
+            var pattern = /^[a-zA-Z  -]*$/;
+            var subcategory = $("#form_subcategory").val();
+            if (pattern.test(subcategory) && subcategory !== '') {
+               $("#subcategory_error_message").hide();
+               $("#form_subcategory").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#subcategory_error_message").html("Should contain only Characters");
+               $("#subcategory_error_message").show();
+               $("#subcategory_error_message").css("border-bottom","2px solid #F90A0A");
+               error_subcategory = true;
+            }
+         }
+
+        
+        
+
+         $("#subcategory_form").submit(function() {
+          
+          
+            
+            error_subcategory=false
+           
+
+          check_subcategory()
+            
+
+            if (error_subcategory === false ) {
+              
+               return true;
+            } else {
+               alert("Please Fill the form Correctly");
+               return false;
+            }
+
+
+         });
+     
+
+
+</script>

@@ -1,0 +1,168 @@
+
+<body>
+    <section class="">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+         
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Sub Category Offers</h3>
+
+            <form method="post" id="AddSubCategory" action="/offer/Add-SubCategoryOffer" class="px-md-2">
+
+              <div class="form-outline mb-4">
+                <span class="error_form" id="percentage_error_message"></span>
+                <input type="num" id="form_percentage" name="discount" class="form-control" />
+                <label class="form-label" for="form3Example1q">Offers In Percentage</label>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                 <input type="text" id="sub" value="subcategory" name="offertype" hidden>
+                 <span class="error_form" id="date_error_message"></span>
+                  <div class="form-outline datepicker">
+                    <input
+                      type="date"
+                      name="validity"
+                      class="form-control"
+                      id="validity"
+                    />
+                    <label for="exampleDatepicker1" class="form-label">Select a date</label>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4">
+
+                  <select name="offercategory" class="select">
+                      {{#each subcategory}}
+                  
+                    <option value="{{this.subcategory}}">{{this.subcategory}}</option>
+                    {{/each}}
+                  </select>
+
+                </div>
+              </div>
+
+              
+
+              
+              <button type="submit" class="btn btn-success btn-lg mb-1">Submit</button>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+   
+  </div>
+</section>
+{{#if SubCategotyOffer}}
+<div class="container">
+
+
+ <table style="text-align: center;" class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Offer Type</th>
+      <th scope="col">Category</th>
+      <th scope="col">Validity</th>
+      <th scope="col">Discount</th>
+       <th scope="col"></th>
+    </tr>
+  </thead>
+  {{#each SubCategotyOffer}}
+  <tbody>
+    
+    <tr>
+
+      <th scope="row">{{this.offertype}}</th>
+      <td>{{this.offercategory}}</td>
+      <td>{{this.validity}}</td>
+      <td style="color: green;" >{{this.discount}}</td>
+        <td>
+          <button class="btn btn-danger" onclick="removeSubCategoryOffer('{{this._id}}','{{this.offercategory}}')" >Delete</button> </td>
+          
+    </tr>
+    
+    
+  </tbody>
+  {{/each}}
+</table>
+</div>
+{{else}}
+
+{{/if}}
+<!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Bootstrap core JavaScript-->
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/js/sb-admin-2.min.js"></script>
+</body>
+</div>
+
+<style>
+
+CSS
+@media (min-width: 1025px) {
+  .h-custom {
+    height: 100vh !important;
+  }
+}
+    </style>
+
+
+
+
+<script>
+  function removeSubCategoryOffer(OfferID,Category){
+   
+  
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, delete it!'
+}).then((result) => {
+  if (result.isConfirmed) {
+
+    $.ajax({
+      url:'/offer/removeSubCategoryOffer',
+      method:'post',
+      data:{
+        OfferID:OfferID,
+        SubCategory:Category
+      },
+      success:(response)=>{
+        console.log(response)
+        if(response.status){
+          location.reload()
+        }
+
+
+      }
+      
+
+    })
+    Swal.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+    
+  }
+})
+  }
+</script>
+
+

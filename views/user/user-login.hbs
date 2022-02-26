@@ -1,0 +1,133 @@
+
+
+<section class="vh-100" style="background-color: #508bfc;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            <h3 class="mb-5">Sign in</h3>
+            {{#if loginError}}
+            <div class="alert alert-danger" role="alert">
+                {{loginError}}
+</div>
+{{/if}}
+
+            
+            <form method="post" id="registration_form" action="/login"> 
+ <h5 class="error_form text-danger" id="email_error_message"></h5>
+            <div class="form-outline mb-4">
+              <input type="email" id="form_email" name="email" class="form-control form-control-lg" />
+              <label class="form-label" for="typeEmailX-2">Email</label>
+            </div>
+
+ <h5 class="error_form  text-danger" id="password_error_message"></h5>
+            <div class="form-outline mb-4">
+                 <input type="password" id="form_password" name="password" class="form-control form-control-lg" />
+              <label class="form-label" for="typePasswordX-2">Password</label>
+            </div>
+            
+
+            <!-- Checkbox -->
+            <div class="form-check d-flex justify-content-start mb-4">
+              
+              <label class="form-check-label" for="form1Example3"> Login With OTP <a href="/otp" style="color: blue;">Click Here</a></label>
+            </div>
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+            </form>
+
+            <hr class="my-4">
+
+             {{!-- <button class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;" type="submit"><i class="fab fa-google me-2"></i> Sign in with google</button> --}}
+        
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+
+
+$("#email_error_message").hide()
+
+{{!-- $("#password_error_message").hide() --}}
+
+
+
+
+var error_email=false;
+
+{{!-- var error_password=false; --}}
+
+   
+         $("#form_email").focusout(function() {
+            check_email();
+         });
+         
+        $("#form_password").focusout(function() {
+            check_password();
+         });
+
+
+         function check_password() {
+            var password_length = $("#form_password").val().length;
+            if (password_length < 8) {
+               $("#password_error_message").html("Atleast 8 Characters");
+               $("#password_error_message").show();
+               $("#form_password").css("border-bottom","2px solid #F90A0A");
+               error_password = true;
+            } else {
+               $("#password_error_message").hide();
+               $("#form_password").css("border-bottom","2px solid #34F458");
+            }
+         }
+
+     
+
+         function check_email() {
+            var pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            var email = $("#form_email").val();
+            if (pattern.test(email) && email !== '') {
+               $("#email_error_message").hide();
+               $("#form_email").css("border-bottom","2px solid #34F458");
+            } else {
+               $("#email_error_message").html(" Enter Email Correctly");
+               $("#email_error_message").show();
+               $("#form_email").css("border-bottom","2px solid #F90A0A");
+               error_email = true;
+            }
+         }
+        
+
+         $("#registration_form").submit(function() {
+          
+            error_email = false;
+            
+          error_password = false;
+           
+
+          
+            check_email();
+           
+            check_password();
+            
+
+            if (error_email === false ) {
+              
+               return true;
+            } else {
+               Swal.fire('Fill The Form Properly')
+               return false;
+            }
+
+
+         });
+     
+
+
+</script>
